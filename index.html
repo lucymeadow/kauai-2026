@@ -36,10 +36,11 @@
   }
 
   .hero {
-    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean) 40%, var(--palm) 100%);
+    background: linear-gradient(to bottom, rgba(15,55,65,0.35) 0%, rgba(15,55,65,0.55) 100%),
+                url('https://images.unsplash.com/photo-1554419154-e40007a2931b?auto=format&fit=crop&w=1600&q=80') center 40% / cover no-repeat;
     color: var(--white);
     text-align: center;
-    padding: 4rem 1.5rem 3rem;
+    padding: 5.5rem 1.5rem 4rem;
     position: relative;
     overflow: hidden;
   }
@@ -57,22 +58,36 @@
     font-weight: 300;
     letter-spacing: 0.02em;
     margin-bottom: 0.3rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
   }
   .hero h1 strong { font-weight: 700; }
   .hero .subtitle {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    opacity: 0.9;
+    opacity: 0.95;
     font-weight: 300;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
   }
   .hero .dates {
     display: inline-block;
     margin-top: 1.2rem;
     padding: 0.5rem 1.5rem;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.5);
     border-radius: 100px;
     font-size: 0.95rem;
     letter-spacing: 0.04em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    background: rgba(255,255,255,0.08);
   }
+  .hero .credit {
+    position: absolute;
+    bottom: 70px;
+    right: 1rem;
+    font-size: 0.65rem;
+    opacity: 0.6;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .hero .credit a { color: var(--white); }
 
   nav.toc {
     background: var(--white);
@@ -380,6 +395,7 @@
   <h1>Kauai <strong>2026</strong></h1>
   <div class="subtitle">Jacobson &middot; Meadow Family Vacation</div>
   <div class="dates">June 13 &ndash; 20 &nbsp;&bull;&nbsp; Princeville, North Shore</div>
+  <div class="credit">Photo: <a href="https://unsplash.com/@rpnickson">Roberto Nickson</a> / Unsplash</div>
 </div>
 
 <nav class="toc">
