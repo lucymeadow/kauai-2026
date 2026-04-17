@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kauai 2026 — Jacobson-Meadow Family Vacation</title>
+<style>
+  :root {
+    --ocean: #1a6b7a;
+    --ocean-dark: #0f4f5c;
+    --sand: #f5f0e8;
+    --coral: #e07a5f;
+    --palm: #3d7a4a;
+    --sunset: #f2a65a;
+    --lava: #2d2d2d;
+    --mist: #e8eff1;
+    --white: #ffffff;
+    --text: #2d2d2d;
+    --text-light: #5a6a70;
+    --border: #d4dde0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--sand);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean) 40%, var(--palm) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--sand);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 strong { font-weight: 700; }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    opacity: 0.9;
+    font-weight: 300;
+  }
+  .hero .dates {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 100px;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+  }
+
+  nav.toc {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav.toc .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  nav.toc a {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  nav.toc a:hover { background: var(--mist); color: var(--ocean); }
+  nav.toc a.day { color: var(--ocean-dark); }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  section {
+    margin-top: 3rem;
+  }
+  section:first-of-type { margin-top: 2rem; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--ocean);
+    padding: 0.2rem 0.65rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+  .section-label.coral { background: var(--coral); }
+  .section-label.palm { background: var(--palm); }
+  .section-label.sunset { background: var(--sunset); color: var(--lava); }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ocean-dark);
+    margin-bottom: 0.3rem;
+  }
+  h2 .day-subtitle {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-top: 0.15rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ocean);
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p, li { font-size: 0.95rem; }
+  p { margin-bottom: 0.75rem; }
+  ul, ol { margin: 0.5rem 0 1rem 1.25rem; }
+  li { margin-bottom: 0.3rem; }
+
+  .note {
+    background: var(--mist);
+    border-left: 3px solid var(--ocean);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  .note.warn {
+    background: #fff5ec;
+    border-left-color: var(--coral);
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .timeline { margin: 1rem 0; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ocean);
+    padding-top: 0.1rem;
+    white-space: nowrap;
+  }
+  .timeline-desc { font-size: 0.92rem; }
+  .timeline-desc strong { color: var(--ocean-dark); }
+
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  @media (max-width: 700px) {
+    .split-grid { grid-template-columns: 1fr; }
+  }
+  .split-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .split-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+  }
+  .split-card .who {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+  }
+  table th {
+    background: var(--ocean);
+    color: var(--white);
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  table th:first-child { border-radius: 8px 0 0 0; }
+  table th:last-child { border-radius: 0 8px 0 0; }
+  table td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table tr:last-child td { border-bottom: none; }
+  table tr:nth-child(even) td { background: rgba(0,0,0,0.015); }
+  table.coral th { background: var(--coral); }
+  table.palm th { background: var(--palm); }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .overview-item {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .overview-item .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .overview-item .value {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .crew-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .crew-member {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .crew-member .name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ocean-dark);
+  }
+  .crew-member .detail {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    margin-left: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag.vegan { background: #e6f5e6; color: #2a7a2a; }
+  .tag.book { background: #fff3e0; color: #b06000; }
+
+  a { color: var(--ocean); }
+  a:hover { color: var(--ocean-dark); }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
+  }
+  .footer .mahalo {
+    font-size: 1.5rem;
+    color: var(--ocean);
+    font-weight: 300;
+    margin-bottom: 0.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.25rem 2.5rem; }
+    .container { padding: 0 1rem 3rem; }
+    .timeline-item { grid-template-columns: 90px 1fr; gap: 0.75rem; }
+    .crew-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
+    nav.toc .inner { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Kauai <strong>2026</strong></h1>
+  <div class="subtitle">Jacobson &middot; Meadow Family Vacation</div>
+  <div class="dates">June 13 &ndash; 20 &nbsp;&bull;&nbsp; Princeville, North Shore</div>
+</div>
+
+<nav class="toc">
+  <div class="inner">
+    <a href="#overview">Overview</a>
+    <a href="#day1" class="day">Day 1</a>
+    <a href="#day2" class="day">Day 2</a>
+    <a href="#day3" class="day">Day 3</a>
+    <a href="#day4" class="day">Day 4</a>
+    <a href="#day5" class="day">Day 5</a>
+    <a href="#day6" class="day">Day 6</a>
+    <a href="#day7" class="day">Day 7</a>
+    <a href="#day8" class="day">Day 8</a>
+    <a href="#booking">Booking</a>
+    <a href="#restaurants">Food</a>
+    <a href="#beaches">Beaches</a>
+    <a href="#notes">Notes</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ───────────── OVERVIEW ───────────── -->
+<section id="overview">
+  <span class="section-label">Trip Details</span>
+  <h2>Overview</h2>
+
+  <div class="overview-grid">
+    <div class="overview-item">
+      <div class="label">Dates</div>
+      <div class="value">Sat Jun 13 &ndash; Sat Jun 20</div>
+    </div>
+    <div class="overview-item">
+      <div class="label">Lodging</div>
+      <div class="value">VRBO #4435088<br>4122 Rooke Pl, Princeville</div>
+    </div>
+    <div class="overview-item">
+      <div class="label">Outbound Flight</div>
+      <div class="value">AA 119 &mdash; LAX 8:28a &rarr; LIH 11:26a</div>
+    </div>
+    <div class="overview-item">
+      <div class="label">Return Flight</div>
+      <div class="value">AA 266 &mdash; LIH 12:56p &rarr; LAX 9:37p</div>
+    </div>
+    <div class="overview-item">
+      <div class="label">Vehicles</div>
+      <div class="value">2 rental cars</div>
+    </div>
+    <div class="overview-item">
+      <div class="label">VRBO Reservation</div>
+      <div class="value">434430</div>
+    </div>
+  </div>
+
+  <h3>The Crew</h3>
+  <div class="crew-grid">
+    <div class="crew-member"><div class="name">Tom Jacobson</div><div class="detail">72 &middot; Patriarch</div></div>
+    <div class="crew-member"><div class="name">Susan Arnold Jacobson</div><div class="detail">73 &middot; Matriarch</div></div>
+    <div class="crew-member"><div class="name">Lucy Meadow</div><div class="detail">41 &middot; Eldest daughter <span class="tag vegan">vegan</span></div></div>
+    <div class="crew-member"><div class="name">Shmug Meadow</div><div class="detail">41 &middot; Lucy's husband</div></div>
+    <div class="crew-member"><div class="name">Will Meadow</div><div class="detail">5 &middot; Lucy &amp; Shmug's son</div></div>
+    <div class="crew-member"><div class="name">Owen Meadow</div><div class="detail">2 &middot; Lucy &amp; Shmug's son</div></div>
+    <div class="crew-member"><div class="name">Hannah Jacobson</div><div class="detail">37 &middot; Middle child</div></div>
+    <div class="crew-member"><div class="name">Matthew Jacobson</div><div class="detail">29 &middot; Youngest child</div></div>
+    <div class="crew-member"><div class="name">Morgan Hildebrand</div><div class="detail">29 &middot; Matthew's girlfriend</div></div>
+  </div>
+
+  <h3>Daily Rhythm</h3>
+  <ul>
+    <li><strong>Owen's nap:</strong> ~12:30&ndash;3:30 PM every day (plan to be home or in the car by 12:30)</li>
+    <li><strong>Kids' bedtime:</strong> ~8:00 PM (plan to be back at the house by 7:30)</li>
+    <li><strong>Two cars</strong> allow the group to split when it makes sense &mdash; adventure outings vs. relaxed kid time</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 1 ───────────── -->
+<section id="day1">
+  <span class="section-label">Day 1</span>
+  <h2>Saturday, June 13 <span class="day-subtitle">Arrival</span></h2>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">11:26 AM</div>
+        <div class="timeline-desc">Arrive LIH. Pick up 2 rental cars.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00–1:00 PM</div>
+        <div class="timeline-desc"><strong>Costco in Lihue</strong> &mdash; Stock up on groceries, drinks, snacks, sunscreen, beach supplies. This Costco is phenomenal: prepared meals, local produce, fresh-baked goods, Kona coffee, macadamia nuts, good wine selection. Don't skip it.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">1:00–1:45 PM</div>
+        <div class="timeline-desc">Drive to Princeville (~45 min). Owen will likely nap in the car.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">2:00–4:00 PM</div>
+        <div class="timeline-desc">Settle into the house. Unpack, explore the property, find the bikes.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:00–6:00 PM</div>
+        <div class="timeline-desc"><strong>Walk the neighborhood.</strong> Stroll to the Punahele Point cul-de-sac near the house for a preview of the sunset views. If conditions are calm, peek at the Queen's Bath trailhead (the path starts in the parking lot on the inland side of the house).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:30 PM</div>
+        <div class="timeline-desc"><strong>Dinner: B's Kitchen (Piazza)</strong> &mdash; Princeville Shopping Center, ~3 min drive. House-made pasta, excellent pizza. <span class="tag vegan">vegan</span> Pasta with marinara, veggie pizza (no cheese), salads. Warm and welcoming &mdash; perfect low-key first night.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-desc">Kids to bed. Adults unwind on the lanai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 2 ───────────── -->
+<section id="day2">
+  <span class="section-label">Day 2</span>
+  <h2>Sunday, June 14 <span class="day-subtitle">Hanalei Town &amp; Princeville Night Market</span></h2>
+
+  <div class="note">The Princeville Night Market falls on the second Sunday of each month &mdash; that's today! Live music, local artists, food trucks, 4&ndash;8 PM.</div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">8:00–9:30 AM</div>
+        <div class="timeline-desc">Relaxed breakfast at the house.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:30 AM</div>
+        <div class="timeline-desc">Drive to <strong>Hanalei</strong> (~10 min). Browse Ching Young Village &mdash; shops, galleries, the gem store near Hanalei Wake-Up Caf&eacute;. Let Will and Owen explore.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:00 AM</div>
+        <div class="timeline-desc"><strong>Lunch: Nourish Hanalei</strong> &mdash; Locally-sourced plant-based bowls, acai bowls, wraps, and salads overlooking Hanalei Valley. Fully vegan-friendly and great for everyone. <span class="tag vegan">vegan</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 PM</div>
+        <div class="timeline-desc">Quick visit to <strong>Holey Grail Donuts</strong> &mdash; 100% plant-based taro donuts made with organic coconut oil. The kids will love these. <span class="tag vegan">vegan</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:30 PM</div>
+        <div class="timeline-desc"><strong>Split:</strong> Car 1 takes Owen home for nap. Car 2 can linger at Hanalei Bay Beach &mdash; gentle water at Black Pot, perfect for Will to wade and play.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3:30 PM</div>
+        <div class="timeline-desc">Regroup at the house.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:00–7:30 PM</div>
+        <div class="timeline-desc"><strong>Princeville Night Market</strong> (4&ndash;8 PM). Live music, local artists selling handmade goods, food trucks with local foods. Great for the whole family. Grab dinner from the food vendors &mdash; there will be variety for everyone including vegan options.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:30 PM</div>
+        <div class="timeline-desc">Head home. Kids to bed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 3 ───────────── -->
+<section id="day3">
+  <span class="section-label">Day 3</span>
+  <h2>Monday, June 15 <span class="day-subtitle">North Shore Beach Day</span></h2>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">8:00–9:00 AM</div>
+        <div class="timeline-desc">Breakfast at the house.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:30 AM</div>
+        <div class="timeline-desc"><strong>Anini Beach Park</strong> (~8 min drive). Very calm, protected water &mdash; one of the safest beaches on the North Shore. Shallow enough for Owen to splash, calm enough for Tom and Susan to relax. Decent snorkeling along the reef. Facilities: restrooms, picnic area, shade trees.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 PM</div>
+        <div class="timeline-desc">Pack up, head home for Owen's nap. Lunch at the house with Costco supplies.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:30–3:30 PM</div>
+        <div class="timeline-desc"><strong>Rest &amp; recharge.</strong> Owen naps. Adults rotate: biking around Princeville, reading, lounging. Tom &amp; Susan can enjoy the house at a quiet pace. Hannah, Matthew &amp; Morgan might bike to Pu'u Poa Beach (~5 min ride).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">4:00–5:30 PM</div>
+        <div class="timeline-desc"><strong>Kalihiwai Beach</strong> (optional, ~10 min drive). The natural lagoon inland from the ocean is magical &mdash; calmer water, rock jumping for the brave, and you might spot dolphins offshore. Or stay at the house and enjoy the bikes.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:15 PM</div>
+        <div class="timeline-desc"><strong>Sunset from the Punahele Point golf course</strong> &mdash; short walk from the house. Bring drinks.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-desc"><strong>Dinner: Tiki Iniki</strong> &mdash; Princeville Center. Hawaiian fusion by Todd Rundgren. Incredible tropical cocktails. <span class="tag vegan">vegan</span> Veggie stir-fry, rice dishes, salads &mdash; call ahead to confirm. Fun vintage Hawaiian d&eacute;cor.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-desc">Kids to bed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 4 ───────────── -->
+<section id="day4">
+  <span class="section-label">Day 4</span>
+  <h2>Tuesday, June 16 <span class="day-subtitle">Waimea Canyon — Split Group</span></h2>
+
+  <p>Waimea Canyon is the &ldquo;Grand Canyon of the Pacific&rdquo; &mdash; spectacular but 1.5 hours from the house. Best done as a split-group day.</p>
+
+  <div class="split-grid">
+    <div class="split-card">
+      <h4>Group A &mdash; Canyon Crew</h4>
+      <div class="who">Suggested: Hannah, Matthew, Morgan + any adults wanting an adventure</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">6:30 AM</div>
+          <div class="timeline-desc">Early departure for Waimea Canyon (~1.5 hr drive).</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">8:00–12:30</div>
+          <div class="timeline-desc">Lookouts, easy nature loop hikes, <strong>Koke'e State Park</strong>, Natural History Museum, <strong>Pu'u o Kila Lookout</strong> &mdash; stunning Na Pali views from above.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">1:15 PM</div>
+          <div class="timeline-desc"><strong>Lunch: Brick Oven Pizza, Kalaheo</strong> (on the return route). Excellent pizza, pasta, salads.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">~3:30 PM</div>
+          <div class="timeline-desc">Back in Princeville.</div>
+        </div>
+      </div>
+    </div>
+    <div class="split-card">
+      <h4>Group B &mdash; Beach Family</h4>
+      <div class="who">Suggested: Lucy, Shmug, Will, Owen, Tom, Susan</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">9:30 AM</div>
+          <div class="timeline-desc"><strong>Lydgate Beach Park</strong> (~30 min south). Protected seawater pool &mdash; the best beach on Kauai for a 2-year-old. <strong>Kamalani Playground</strong> &mdash; jungle gyms, slides, caves, a labyrinth.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00 PM</div>
+          <div class="timeline-desc">Drive home, Owen naps, lunch at house.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">3:30–5:30</div>
+          <div class="timeline-desc">Bikes, house time, relax.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Everyone Together</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">6:00 PM</div>
+        <div class="timeline-desc">Sunset at Punahele Point.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:30 PM</div>
+        <div class="timeline-desc"><strong>Dinner: Postcards Caf&eacute;, Hanalei</strong> (Tue&ndash;Sat, 5&ndash;9 PM). Organic seafood &amp; vegetarian/vegan in a charming historic bungalow. <span class="tag vegan">vegan</span> Hanalei taro fritters, seared polenta cakes, yaki nori tofu, the Sombrero, vegan Valrhona chocolate marquesa. Wine &amp; beer only. Call (808) 826-1191.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-desc">Kids to bed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 5 ───────────── -->
+<section id="day5">
+  <span class="section-label">Day 5</span>
+  <h2>Wednesday, June 17 <span class="day-subtitle">Ke'e Beach &amp; Ha'ena State Park</span></h2>
+
+  <div class="note warn">
+    <strong>Advance booking required!</strong> Reserve at <a href="https://www.gohaena.com">gohaena.com</a> exactly 30 days before (<strong>May 14</strong>). Set an alarm for 12:00 AM HST. Shuttle: $40/adult, $25/child 4&ndash;15, free under 4. Departs from Princeville Makai Golf Club (close to the house).
+  </div>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 AM</div>
+        <div class="timeline-desc">Breakfast at the house. Prepare beach bag: snorkels, reef-safe sunscreen, water shoes for the little ones.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:30 AM</div>
+        <div class="timeline-desc">Take the shuttle from Princeville Makai Golf Club to Ha'ena State Park.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:00–12:00</div>
+        <div class="timeline-desc"><strong>Ke'e Beach</strong> &mdash; Protected swimming, often with sea turtles. Set against dramatic cliffs at the very end of the road. Will can snorkel in the shallows; Owen can splash in the calm parts. Tom and Susan can sit in the shade and take in one of the most beautiful settings on earth.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 PM</div>
+        <div class="timeline-desc">Shuttle back to Princeville.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:15 PM</div>
+        <div class="timeline-desc">Grab <strong>Holey Grail Donuts</strong> or lunch from <strong>The Spot</strong> (Princeville Shopping Center &mdash; acai bowls, avocado toast). <span class="tag vegan">vegan</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:30–3:30 PM</div>
+        <div class="timeline-desc">Owen's nap. Rest time for everyone.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3:30–5:30 PM</div>
+        <div class="timeline-desc">Afternoon bike ride around Princeville or walk to Queen's Bath (check conditions &mdash; summer is generally safe, but always respect the gate).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">6:00 PM</div>
+        <div class="timeline-desc">Sunset.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-desc"><strong>Dinner: Hanalei Dolphin</strong> &mdash; Incredible fresh seafood, homemade bread, good kids' menu. For Lucy: vegetable sides, salads, rice dishes. Alternatively, <strong>Bar Acuda</strong> for upscale small plates with vegan tapas.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-desc">Kids to bed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 6 ───────────── -->
+<section id="day6">
+  <span class="section-label">Day 6</span>
+  <h2>Thursday, June 18 <span class="day-subtitle">Na Pali Sunset Cruise — Split Group</span></h2>
+
+  <div class="note warn">
+    <strong>Advance booking required!</strong> Recommended: <a href="https://napaliseatours.com/">Na Pali Kauai Sea Tours</a> from Port Allen on <em>The Lucky Lady</em> catamaran. ~4 hours &mdash; dinner, drinks, sunset champagne toast. Call 808-335-5309. ~$140&ndash;270/person. <strong>Minimum age typically 5</strong> &mdash; Owen cannot go; confirm Will qualifies when booking.
+  </div>
+
+  <h3>Morning &mdash; Everyone Together</h3>
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">8:30 AM</div>
+        <div class="timeline-desc">Head to <strong>Hanalei Bay Beach</strong> &mdash; gentle water, the pier at Black Pot, wide sandy beach.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:00 AM</div>
+        <div class="timeline-desc"><strong>Lunch in Hanalei:</strong> Tropical Taco for the group (call ahead: 808-827-TACO), Nourish or Thai Elephant food truck for Lucy. <span class="tag vegan">vegan</span></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 PM</div>
+        <div class="timeline-desc">Head home for Owen's nap.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Afternoon &mdash; Split</h3>
+  <div class="split-grid">
+    <div class="split-card">
+      <h4>Cruise Group</h4>
+      <div class="who">Suggested: Matthew, Morgan, Hannah + others as desired</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">2:30 PM</div>
+          <div class="timeline-desc">Depart Princeville for Port Allen (~1.5 hr drive south).</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">4:00 PM</div>
+          <div class="timeline-desc">Check in at Port Allen Marina.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">4:30–9:00</div>
+          <div class="timeline-desc"><strong>Na Pali Coast Sunset Cruise.</strong> 4,000-foot emerald cliffs, waterfalls, dolphins, sea caves. Dinner on board, open bar, champagne toast at sunset.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">~10:30 PM</div>
+          <div class="timeline-desc">Return to Princeville.</div>
+        </div>
+      </div>
+    </div>
+    <div class="split-card">
+      <h4>Home Group</h4>
+      <div class="who">With the little ones</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">3:30–5:30</div>
+          <div class="timeline-desc">Pool, bikes, yard play. Relaxed afternoon.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:00 PM</div>
+          <div class="timeline-desc">Sunset from Punahele Point.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:30 PM</div>
+          <div class="timeline-desc">Easy dinner at the house or <strong>Lotus Garden</strong> in Princeville Center for Chinese &amp; Thai. <span class="tag vegan">vegan</span> Tofu stir-fry, vegetable curry, noodle dishes.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">8:00 PM</div>
+          <div class="timeline-desc">Kids to bed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 7 ───────────── -->
+<section id="day7">
+  <span class="section-label">Day 7</span>
+  <h2>Friday, June 19 <span class="day-subtitle">Kilauea &amp; Farewell Dinner</span></h2>
+
+  <p>Last full day. Keep it relaxed and soak it all in.</p>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">8:00–9:00 AM</div>
+        <div class="timeline-desc">Leisurely breakfast at the house.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:30 AM</div>
+        <div class="timeline-desc">Drive to <strong>Kilauea</strong> (~15 min).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:45 AM</div>
+        <div class="timeline-desc"><strong>Kilauea Lighthouse</strong> &mdash; Historic lighthouse on a dramatic cliff with a large waterfowl nesting area. Easy, flat walking. Will and Owen will enjoy watching the seabirds. Beautiful ocean views.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30 AM</div>
+        <div class="timeline-desc"><strong>Kilauea Bakery &amp; Pau Hana Pizza</strong> (Kong Lung Center). Bagels, incredible olive tapenade (buy extra &mdash; you'll want it at home), homemade soups, pizza, outstanding cakes. <span class="tag vegan">vegan</span> Veggie pizza, soups (ask which are vegan), bagels with tapenade.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">11:00 AM</div>
+        <div class="timeline-desc">Browse the <strong>Kong Lung Center</strong> shops and nearby <strong>Island Soap and Candle Works</strong> in the Ahuimanu Shopping Center (handmade Hawaiian soaps &mdash; great gifts).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:00 PM</div>
+        <div class="timeline-desc">Head home. Owen's nap. Start packing and organizing.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:30–3:30 PM</div>
+        <div class="timeline-desc">Rest, pack, tidy up. Last loads of laundry.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3:30 PM</div>
+        <div class="timeline-desc"><strong>Final beach visit:</strong> Walk to Queen's Bath if conditions are good (check the gate). Otherwise, drive 2 minutes to Pu'u Poa Beach for one last swim.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5:30 PM</div>
+        <div class="timeline-desc"><strong>Final sunset together</strong> from the golf course at Punahele Point. Bring a bottle of wine. Take the family photo.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 PM</div>
+        <div class="timeline-desc"><strong>Farewell Dinner: Bar Acuda, Hanalei</strong> &mdash; Gourmet small plates, tapas-style. High-end but not stuffy. <span class="tag vegan">vegan</span> Roasted vegetables, salads, bruschetta with seasonal toppings. Sometimes has live music. A special meal to close out the trip.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00 PM</div>
+        <div class="timeline-desc">Kids to bed. Adults enjoy a final evening together on the lanai under the stars.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── DAY 8 ───────────── -->
+<section id="day8">
+  <span class="section-label">Day 8</span>
+  <h2>Saturday, June 20 <span class="day-subtitle">Departure</span></h2>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">7:00 AM</div>
+        <div class="timeline-desc">Wake up. Breakfast at the house &mdash; use up the last of the Costco supplies.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00–9:00 AM</div>
+        <div class="timeline-desc">Final pack-up, load the cars, check all rooms, take out trash. Last photos of the house and views.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:15 AM</div>
+        <div class="timeline-desc">Depart Princeville for LIH (~45 min).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:00 AM</div>
+        <div class="timeline-desc">Arrive at airport. Return rental cars.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:15 AM</div>
+        <div class="timeline-desc">Check in, security. Browse the small airport shops. Grab a last shave ice or coffee.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">12:56 PM</div>
+        <div class="timeline-desc"><strong>Depart LIH &rarr; LAX</strong> (AA 266).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">9:37 PM</div>
+        <div class="timeline-desc">Arrive LAX. Aloha.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── ADVANCE BOOKING ───────────── -->
+<section id="booking">
+  <span class="section-label coral">Action Required</span>
+  <h2>Advance Booking Checklist</h2>
+  <p>Book these <strong>before</strong> you leave &mdash; some sell out weeks or months ahead.</p>
+
+  <table class="coral">
+    <thead>
+      <tr><th>Item</th><th>When to Book</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Ha'ena State Park / Ke'e Beach</strong></td>
+        <td>May 14 at 12:00 AM HST</td>
+        <td><a href="https://www.gohaena.com">gohaena.com</a> &mdash; Shuttle from Princeville Makai Golf Club. $40/adult, $25/child 4&ndash;15, free under 4.</td>
+      </tr>
+      <tr>
+        <td><strong>Na Pali Sunset Cruise</strong></td>
+        <td>ASAP</td>
+        <td>Na Pali Kauai Sea Tours, Port Allen. Call 808-335-5309. ~$140&ndash;270/person. Confirm minimum age for Will (5).</td>
+      </tr>
+      <tr>
+        <td><strong>Postcards Caf&eacute;</strong></td>
+        <td>1&ndash;2 weeks ahead</td>
+        <td>Call (808) 826-1191. Tue&ndash;Sat dinner only. Small restaurant.</td>
+      </tr>
+      <tr>
+        <td><strong>Bar Acuda</strong></td>
+        <td>1&ndash;2 weeks ahead</td>
+        <td>Popular. Book for Friday farewell dinner.</td>
+      </tr>
+      <tr>
+        <td><strong>Silver Falls Ranch</strong> (optional)</td>
+        <td>2&ndash;3 weeks ahead</td>
+        <td>If Will wants horseback riding: private ride for ages 5+, surcharge applies. Call 808-828-6718.</td>
+      </tr>
+      <tr>
+        <td><strong>Rental cars</strong></td>
+        <td>Already booked, or ASAP</td>
+        <td>Confirm 2 cars reserved at LIH.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── RESTAURANTS ───────────── -->
+<section id="restaurants">
+  <span class="section-label palm">Reference</span>
+  <h2>Restaurant Quick Reference</h2>
+
+  <h3>Vegan-Friendly Favorites <span class="tag vegan">for Lucy</span></h3>
+  <table class="palm">
+    <thead>
+      <tr><th>Restaurant</th><th>Location</th><th>Best Vegan Options</th><th>Meal</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Nourish Hanalei</strong></td><td>Hanalei</td><td>Fully plant-based bowls, wraps, salads</td><td>Lunch</td></tr>
+      <tr><td><strong>Holey Grail Donuts</strong></td><td>Hanalei</td><td>100% plant-based taro donuts</td><td>Snack</td></tr>
+      <tr><td><strong>Postcards Caf&eacute;</strong></td><td>Hanalei</td><td>Taro fritters, tofu nori, polenta cakes, chocolate marquesa</td><td>Dinner (Tue&ndash;Sat)</td></tr>
+      <tr><td><strong>The Spot</strong></td><td>Princeville Center</td><td>Acai bowls, avocado toast, savory bowls</td><td>Breakfast/Lunch</td></tr>
+      <tr><td><strong>Vegetate808</strong></td><td>Kapa'a</td><td>Fully vegan brunch &amp; dinner</td><td>Brunch/Dinner</td></tr>
+      <tr><td><strong>Thai Elephant</strong></td><td>Hanalei (food truck)</td><td>Vegan pad thai, mango sticky rice</td><td>Lunch</td></tr>
+      <tr><td><strong>Lotus Garden</strong></td><td>Princeville Center</td><td>Tofu stir-fry, vegetable curry, noodle dishes</td><td>Lunch/Dinner</td></tr>
+      <tr><td><strong>Kilauea Bakery</strong></td><td>Kilauea</td><td>Vegan pizza, soups (ask), bagels with tapenade</td><td>Breakfast/Lunch</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Family Crowd-Pleasers</h3>
+  <table>
+    <thead>
+      <tr><th>Restaurant</th><th>Location</th><th>Vibe</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>B's Kitchen / Piazza</strong></td><td>Princeville Center</td><td>Cozy Italian, great pizza &amp; pasta</td><td>Good for first/easy nights</td></tr>
+      <tr><td><strong>Tiki Iniki</strong></td><td>Princeville Center</td><td>Fun Hawaiian fusion, tropical cocktails</td><td>Vintage tiki d&eacute;cor</td></tr>
+      <tr><td><strong>Hanalei Dolphin</strong></td><td>Hanalei</td><td>Fresh seafood, homemade bread</td><td>Excellent kids' menu</td></tr>
+      <tr><td><strong>Tropical Taco</strong></td><td>Hanalei</td><td>Giant burritos &amp; tacos</td><td>Call ahead: 808-827-TACO</td></tr>
+      <tr><td><strong>Bar Acuda</strong></td><td>Hanalei</td><td>Upscale small plates, tapas</td><td>Great for a special night</td></tr>
+      <tr><td><strong>Brick Oven Pizza</strong></td><td>Kalaheo</td><td>Classic pizza &amp; pasta</td><td>Waimea Canyon return stop (closed Tues)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── BEACHES ───────────── -->
+<section id="beaches">
+  <span class="section-label">Reference</span>
+  <h2>Beach Guide by Scenario</h2>
+
+  <table>
+    <thead>
+      <tr><th>Need</th><th>Go To</th><th>Drive</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Calmest water for toddlers</td><td><strong>Anini Beach Park</strong></td><td>8 min</td><td>Reef-protected, very gentle, picnic area</td></tr>
+      <tr><td>Best playground + beach</td><td><strong>Lydgate Beach Park</strong></td><td>30 min</td><td>Protected pool + Kamalani Playground</td></tr>
+      <tr><td>Sea turtles &amp; stunning scenery</td><td><strong>Ke'e Beach</strong></td><td>Shuttle</td><td>Reservation required; unforgettable</td></tr>
+      <tr><td>Closest to the house</td><td><strong>Pu'u Poa Beach</strong></td><td>2 min</td><td>In front of 1 Hotel Hanalei Bay</td></tr>
+      <tr><td>River lagoon + dolphins</td><td><strong>Kalihiwai Beach</strong></td><td>10 min</td><td>Inland lagoon great for kids; surfers offshore</td></tr>
+      <tr><td>Best for bodysurfing</td><td><strong>Ha'ena Beach Park</strong></td><td>20 min</td><td>Lifeguard, showers, food truck</td></tr>
+      <tr><td>Walk from the house</td><td><strong>Queen's Bath</strong></td><td>5 min walk</td><td>Natural lava pool; check conditions &amp; gate</td></tr>
+      <tr><td>Gentle bay + town access</td><td><strong>Hanalei Bay / Black Pot</strong></td><td>10 min</td><td>Wide, sandy, gentle; pier at high tide</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider">
+
+<!-- ───────────── PRACTICAL NOTES ───────────── -->
+<section id="notes">
+  <span class="section-label sunset">Practical</span>
+  <h2>Practical Notes</h2>
+
+  <div class="card">
+    <h3 style="margin-top:0">Groceries &amp; Supplies</h3>
+    <ul>
+      <li><strong>Costco Lihue</strong> &mdash; Hit this on arrival day and potentially again mid-week. Best Costco you'll ever visit.</li>
+      <li><strong>Princeville Shopping Center</strong> &mdash; Has a small grocery/general store for day-to-day needs.</li>
+      <li><strong>Foodland</strong> in Princeville &mdash; Full grocery store if you need a mid-week restock.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Getting Around</h3>
+    <ul>
+      <li>Princeville to Hanalei: ~10 minutes</li>
+      <li>Princeville to Kilauea: ~15 minutes</li>
+      <li>Princeville to Lihue/Airport: ~45 minutes</li>
+      <li>Princeville to Waimea Canyon entrance: ~1.5 hours</li>
+      <li>Princeville to Port Allen (Na Pali cruises): ~1.5 hours</li>
+      <li>Princeville to Poipu (South Shore): ~1+ hours</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Tips for Traveling with the Little Ones</h3>
+    <ul>
+      <li><strong>Pack for the nap transition:</strong> Have a car seat setup where Owen can fall asleep on the drive home around noon.</li>
+      <li><strong>Reef-safe sunscreen only</strong> &mdash; Hawaii law requires it. Buy at Costco on arrival.</li>
+      <li><strong>Water shoes</strong> &mdash; The rocky shoreline at several beaches (especially Queen's Bath and Ke'e) is much easier with water shoes for little feet.</li>
+      <li><strong>Beach shade</strong> &mdash; Bring or buy a pop-up beach tent for Owen. Available at Costco or ABC Stores.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">For Tom &amp; Susan</h3>
+    <ul>
+      <li>The itinerary builds in rest time every afternoon. The house is home base, and there's no pressure to do every activity.</li>
+      <li><strong>Anini Beach</strong> and <strong>Pu'u Poa Beach</strong> are the most accessible, calmest options close to home.</li>
+      <li>The <strong>Princeville Shopping Center</strong> (B's Kitchen, Lappert's Ice Cream, The Spot) is a 3-minute drive for an easy outing.</li>
+      <li><strong>Sunset walks</strong> to Punahele Point from the house are flat and short.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Weather in June</h3>
+    <ul>
+      <li>June is dry season on Kauai's North Shore &mdash; expect warm days (75&ndash;85&deg;F), occasional brief rain showers, and spectacular sunsets.</li>
+      <li>Ocean conditions are generally calm in summer (unlike winter), making North Shore beaches much safer.</li>
+      <li>Queen's Bath is typically accessible in summer, but always check conditions and the gate.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<div class="footer">
+  <div class="mahalo">Mahalo</div>
+  <p>Have a wonderful trip.</p>
+</div>
+
+</body>
+</html>
