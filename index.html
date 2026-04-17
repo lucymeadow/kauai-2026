@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <title>Kauai 2026 — Jacobson-Meadow Family Vacation</title>
 <style>
   :root {
@@ -335,6 +337,34 @@
     margin-bottom: 0.25rem;
   }
 
+  #map-container {
+    height: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+  }
+  .map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    margin: 0.75rem 0 0;
+    font-size: 0.82rem;
+  }
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .map-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+  }
+
   @media (max-width: 600px) {
     .hero { padding: 3rem 1.25rem 2.5rem; }
     .container { padding: 0 1rem 3rem; }
@@ -355,6 +385,7 @@
 <nav class="toc">
   <div class="inner">
     <a href="#overview">Overview</a>
+    <a href="#map">Map</a>
     <a href="#day1" class="day">Day 1</a>
     <a href="#day2" class="day">Day 2</a>
     <a href="#day3" class="day">Day 3</a>
@@ -424,6 +455,115 @@
     <li><strong>Two cars</strong> allow the group to split when it makes sense &mdash; adventure outings vs. relaxed kid time</li>
   </ul>
 </section>
+
+<hr class="divider">
+
+<!-- ───────────── MAP ───────────── -->
+<section id="map">
+  <span class="section-label">Reference</span>
+  <h2>Trip Map</h2>
+  <div id="map-container"></div>
+  <div class="map-legend">
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#e74c3c"></div> Home Base</div>
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#2196F3"></div> Beaches</div>
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#4CAF50"></div> Restaurants</div>
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#FF9800"></div> Activities &amp; Sights</div>
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#9C27B0"></div> Golf</div>
+    <div class="map-legend-item"><div class="map-legend-dot" style="background:#607D8B"></div> Errands &amp; Transit</div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var map = L.map('map-container', { scrollWheelZoom: false }).setView([22.08, -159.50], 11);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  function dot(color) {
+    return L.divIcon({
+      className: '',
+      html: '<div style="width:14px;height:14px;border-radius:50%;background:' + color +
+            ';border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.35)"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7],
+      popupAnchor: [0, -10]
+    });
+  }
+
+  var colors = {
+    home: '#e74c3c',
+    beach: '#2196F3',
+    food: '#4CAF50',
+    activity: '#FF9800',
+    golf: '#9C27B0',
+    errand: '#607D8B'
+  };
+
+  var places = [
+    // Home
+    [22.2268, -159.4878, 'home', '<strong>The House</strong><br>4122 Rooke Pl, Princeville'],
+
+    // Beaches
+    [22.2260, -159.4920, 'beach', '<strong>Queen\'s Bath</strong><br>5 min walk from house'],
+    [22.2225, -159.4975, 'beach', '<strong>Pu\'u Poa Beach</strong><br>2 min drive / 5 min bike'],
+    [22.2190, -159.4520, 'beach', '<strong>Anini Beach Park</strong><br>8 min &middot; Calm, great for toddlers'],
+    [22.2155, -159.4350, 'beach', '<strong>Kalihiwai Beach</strong><br>10 min &middot; Lagoon + dolphins'],
+    [22.2085, -159.5050, 'beach', '<strong>Hanalei Bay / Black Pot</strong><br>10 min &middot; Gentle bay, pier'],
+    [22.2220, -159.5835, 'beach', '<strong>Ke\'e Beach</strong><br>Ha\'ena State Park &middot; Sea turtles!'],
+    [22.0435, -159.3370, 'beach', '<strong>Lydgate Beach Park</strong><br>30 min &middot; Protected pool + playground'],
+    [22.2167, -159.5600, 'beach', '<strong>Ha\'ena Beach Park</strong><br>20 min &middot; Bodysurfing, lifeguard'],
+    [22.2200, -159.5500, 'beach', '<strong>Tunnels Beach</strong><br>Great snorkeling'],
+
+    // Restaurants - Princeville
+    [22.2198, -159.4748, 'food', '<strong>B\'s Kitchen / Piazza</strong><br>Princeville Center &middot; Italian'],
+    [22.2196, -159.4738, 'food', '<strong>Tiki Iniki</strong><br>Princeville Center &middot; Hawaiian fusion'],
+    [22.2194, -159.4758, 'food', '<strong>The Spot</strong><br>Princeville Center &middot; Acai bowls'],
+    [22.2192, -159.4728, 'food', '<strong>Lotus Garden</strong><br>Princeville Center &middot; Chinese & Thai'],
+
+    // Restaurants - Hanalei
+    [22.2065, -159.5068, 'food', '<strong>Nourish Hanalei</strong><br>Plant-based bowls &amp; wraps'],
+    [22.2053, -159.5072, 'food', '<strong>Holey Grail Donuts</strong><br>100% plant-based taro donuts'],
+    [22.2067, -159.5025, 'food', '<strong>Postcards Caf&eacute;</strong><br>Organic vegetarian/vegan &middot; Tue&ndash;Sat'],
+    [22.2055, -159.5063, 'food', '<strong>Tahiti Nui</strong><br>Luau Wed nights &middot; Live music'],
+    [22.2072, -159.5010, 'food', '<strong>Hanalei Dolphin</strong><br>Fresh seafood, kids\' menu'],
+    [22.2058, -159.5060, 'food', '<strong>Bar Acuda</strong><br>Upscale small plates'],
+    [22.2050, -159.5090, 'food', '<strong>Tropical Taco</strong><br>Giant burritos &amp; tacos'],
+
+    // Restaurants - Other
+    [22.2120, -159.4005, 'food', '<strong>Kilauea Bakery</strong><br>Bagels, olive tapenade, pizza'],
+    [21.9230, -159.5295, 'food', '<strong>Brick Oven Pizza</strong><br>Kalaheo &middot; Closed Tuesdays'],
+
+    // Activities
+    [22.2315, -159.4015, 'activity', '<strong>Kilauea Lighthouse</strong><br>Seabirds, ocean views'],
+    [22.2125, -159.4010, 'activity', '<strong>Kong Lung Center</strong><br>Shops, boutiques, soap store'],
+    [22.0700, -159.6580, 'activity', '<strong>Waimea Canyon Lookout</strong><br>"Grand Canyon of the Pacific"'],
+    [22.1275, -159.6625, 'activity', '<strong>Koke\'e State Park</strong><br>Rainforest, museum, hikes'],
+    [22.1520, -159.6650, 'activity', '<strong>Pu\'u o Kila Lookout</strong><br>Na Pali Coast views from above'],
+    [21.9025, -159.5905, 'activity', '<strong>Port Allen Marina</strong><br>Blue Dolphin Charters &middot; Na Pali cruise'],
+
+    // Golf
+    [22.2165, -159.4830, 'golf', '<strong>Princeville Makai Golf Course</strong><br>Mon 6/15 &middot; 808-826-1912'],
+    [22.2140, -159.4680, 'golf', '<strong>The Prince Course</strong><br>Fri 6/19 &middot; #1 rated in Hawaii'],
+
+    // Errands & Transit
+    [21.9758, -159.3390, 'errand', '<strong>LIH Airport</strong><br>Lihue Airport'],
+    [21.9770, -159.3755, 'errand', '<strong>Costco Lihue</strong><br>Stock up on arrival + mid-week'],
+    [22.2198, -159.4745, 'errand', '<strong>Princeville Shopping Center</strong><br>Groceries, Lappert\'s Ice Cream']
+  ];
+
+  places.forEach(function(p) {
+    L.marker([p[0], p[1]], { icon: dot(colors[p[2]]) })
+      .bindPopup(p[3])
+      .addTo(map);
+  });
+
+  var bounds = L.latLngBounds(places.map(function(p) { return [p[0], p[1]]; }));
+  map.fitBounds(bounds, { padding: [30, 30] });
+})();
+</script>
 
 <hr class="divider">
 
