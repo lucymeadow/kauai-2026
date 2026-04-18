@@ -350,12 +350,18 @@
     margin-bottom: 0.25rem;
   }
 
-  .cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1rem 0; }
+  .cal-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem -1.5rem;
+    padding: 0 1.5rem 0.5rem;
+  }
   .cal {
     display: grid;
-    grid-template-columns: 50px repeat(8, minmax(120px, 1fr));
+    grid-template-columns: 50px repeat(8, 115px);
     gap: 0;
-    min-width: 760px;
+    width: max-content;
     font-size: 0.78rem;
     border-radius: 12px;
     overflow: hidden;
