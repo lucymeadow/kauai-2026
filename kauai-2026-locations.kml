@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>Kauai 2026 — Jacobson-Meadow Family Vacation</name>
+  <description>All locations from the trip itinerary</description>
+
+  <!-- Styles -->
+  <Style id="home">
+    <IconStyle><color>ff4c4ce7</color><scale>1.2</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="beach">
+    <IconStyle><color>ffF39621</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="food">
+    <IconStyle><color>ff4FAF4C</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="activity">
+    <IconStyle><color>ff0098FF</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="golf">
+    <IconStyle><color>ffB0279C</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/purple-circle.png</href></Icon></IconStyle>
+  </Style>
+  <Style id="errand">
+    <IconStyle><color>ff8B7D60</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-circle.png</href></Icon></IconStyle>
+  </Style>
+
+  <!-- ====== HOME BASE ====== -->
+  <Folder>
+    <name>Home Base</name>
+    <Placemark>
+      <name>The House — 4122 Rooke Pl</name>
+      <description>VRBO #4435088, Princeville. Home base for the week.</description>
+      <styleUrl>#home</styleUrl>
+      <Point><coordinates>-159.4878,22.2268,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ====== BEACHES ====== -->
+  <Folder>
+    <name>Beaches</name>
+    <Placemark>
+      <name>Queen's Bath</name>
+      <description>5 min walk from house. Natural lava pool — check conditions and respect the gate.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.4920,22.2260,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Pu'u Poa Beach</name>
+      <description>2 min drive / 5 min bike. Closest beach to the house. Gentle water, decent snorkeling.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.4975,22.2225,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Anini Beach Park</name>
+      <description>8 min drive. Calm, reef-protected — best for toddlers. Picnic area, shade trees. Day 3.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.4520,22.2190,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Kalihiwai Beach</name>
+      <description>10 min drive. Inland lagoon great for kids, surfers offshore, dolphins possible.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.4350,22.2155,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hanalei Bay / Black Pot</name>
+      <description>10 min drive. Wide, sandy, gentle bay. Pier for jumping at high tide. Days 2, 6.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.5050,22.2085,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Ke'e Beach — Ha'ena State Park</name>
+      <description>Shuttle from Princeville Makai Golf Club. Reservation required (gohaena.com). Sea turtles! Day 5.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.5835,22.2220,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lydgate Beach Park</name>
+      <description>30 min drive. Protected seawater pool + Kamalani Playground. Best beach for a 2-year-old. Day 4 option.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.3370,22.0435,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Ha'ena Beach Park</name>
+      <description>20 min drive. Great bodysurfing, lifeguard, showers, food truck.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.5600,22.2167,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tunnels Beach</name>
+      <description>Great snorkeling. Limited parking — no parking on the main road or you'll be ticketed.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.5500,22.2200,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Secret Beach (Kauapea)</name>
+      <description>11 min drive, near Kilauea. Steep trail down. Not recommended for little kids — strong currents, no lifeguard. Beautiful and secluded for adults.</description>
+      <styleUrl>#beach</styleUrl>
+      <Point><coordinates>-159.4080,22.2280,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ====== RESTAURANTS ====== -->
+  <Folder>
+    <name>Restaurants</name>
+    <Placemark>
+      <name>B's Kitchen / Piazza</name>
+      <description>Princeville Shopping Center. Italian — house-made pasta, pizza. Vegan: pasta marinara, veggie pizza.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.4748,22.2198,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tiki Iniki</name>
+      <description>Princeville Center. Hawaiian fusion, tropical cocktails, vintage tiki décor.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.4738,22.2196,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Spot North Shore</name>
+      <description>Princeville Center. Acai bowls, avocado toast, savory bowls. Vegan-friendly. Breakfast/Lunch.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.4758,22.2194,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Lotus Garden</name>
+      <description>Princeville Center. Chinese &amp; Thai. Vegan: tofu stir-fry, vegetable curry, noodles.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.4728,22.2192,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Nourish Hanalei</name>
+      <description>Plant-based bowls, wraps, salads overlooking Hanalei Valley. Fully vegan-friendly. Day 2 lunch.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5068,22.2065,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Holey Grail Donuts</name>
+      <description>Hanalei. 100% plant-based taro donuts with organic coconut oil. Kids love them.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5072,22.2053,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Postcards Café</name>
+      <description>Hanalei. Organic seafood &amp; vegan in a historic bungalow. Tue–Sat 5–9 PM. (808) 826-1191. Optional dinner swap.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5025,22.2067,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tahiti Nui</name>
+      <description>Hanalei. Luau Tue &amp; Wed nights 6–8 PM. Open bar, buffet, hula, fire dancing. Day 5 dinner.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5063,22.2055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hanalei Dolphin</name>
+      <description>Hanalei. Fresh seafood, homemade bread, excellent kids' menu. Hanalei Fish Market in back.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5010,22.2072,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Bar Acuda</name>
+      <description>Hanalei. Upscale small plates, tapas-style. Vegan options. Optional dinner swap.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5060,22.2058,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Tropical Taco</name>
+      <description>Hanalei. Giant burritos &amp; tacos. Call ahead: 808-827-TACO.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5090,22.2050,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Thai Elephant (food truck)</name>
+      <description>Hanalei. Vegan pad thai, mango sticky rice.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5055,22.2060,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Kilauea Bakery &amp; Pau Hana Pizza</name>
+      <description>Kong Lung Center, Kilauea. Bagels, incredible olive tapenade, pizza, soups, cakes. Day 7 morning.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.4005,22.2120,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Brick Oven Pizza</name>
+      <description>Kalaheo. Great pizza, pasta, salads. Good Waimea Canyon return stop. Closed Tuesdays.</description>
+      <styleUrl>#food</styleUrl>
+      <Point><coordinates>-159.5295,21.9230,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ====== ACTIVITIES &amp; SIGHTS ====== -->
+  <Folder>
+    <name>Activities &amp; Sights</name>
+    <Placemark>
+      <name>Kilauea Lighthouse</name>
+      <description>15 min drive. Historic lighthouse, seabird nesting, ocean views. Easy flat walking. Day 7 morning.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.4015,22.2315,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Kong Lung Center</name>
+      <description>Kilauea. Shops, boutiques, art. Island Soap and Candle Works nearby.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.4010,22.2125,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Waimea Canyon Lookout</name>
+      <description>"Grand Canyon of the Pacific." 1.5 hrs from house. Day 4 canyon crew.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.6580,22.0700,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Koke'e State Park</name>
+      <description>Rainforest, Natural History Museum, hikes. At the top of Waimea Canyon Drive.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.6625,22.1275,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Pu'u o Kila Lookout</name>
+      <description>End of Waimea Canyon Drive. Stunning Na Pali Coast views from above.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.6650,22.1520,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Port Allen Marina</name>
+      <description>Blue Dolphin Charters — Na Pali sunset cruise. Day 7 departure point. 1.5 hrs from house.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.5905,21.9025,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Princeville Night Market</name>
+      <description>2nd Sunday of each month, 4–8 PM. Live music, local artists, food trucks. Day 2.</description>
+      <styleUrl>#activity</styleUrl>
+      <Point><coordinates>-159.4750,22.2200,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ====== GOLF ====== -->
+  <Folder>
+    <name>Golf</name>
+    <Placemark>
+      <name>Princeville Makai Golf Course</name>
+      <description>Mon 6/15 — Round 1. Trent Jones design, ocean views. 808-826-1912. Mention Princeville stay for discount.</description>
+      <styleUrl>#golf</styleUrl>
+      <Point><coordinates>-159.4830,22.2165,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>The Prince Course</name>
+      <description>Fri 6/19 — Round 2. #1 rated course in Hawaii. 808-826-5000. Mention Princeville stay for discount.</description>
+      <styleUrl>#golf</styleUrl>
+      <Point><coordinates>-159.4680,22.2140,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+  <!-- ====== ERRANDS &amp; TRANSIT ====== -->
+  <Folder>
+    <name>Errands &amp; Transit</name>
+    <Placemark>
+      <name>LIH Airport</name>
+      <description>Lihue Airport. 45 min from house. AA 119 in / AA 266 out.</description>
+      <styleUrl>#errand</styleUrl>
+      <Point><coordinates>-159.3390,21.9758,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Costco Lihue</name>
+      <description>Stock up on arrival day + mid-week restock. Best Costco you'll ever visit.</description>
+      <styleUrl>#errand</styleUrl>
+      <Point><coordinates>-159.3755,21.9770,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Princeville Shopping Center</name>
+      <description>3 min drive. Groceries, Lappert's Ice Cream, The Spot, B's Kitchen, Tiki Iniki.</description>
+      <styleUrl>#errand</styleUrl>
+      <Point><coordinates>-159.4745,22.2198,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Foodland Princeville</name>
+      <description>Full grocery store for mid-week restocks.</description>
+      <styleUrl>#errand</styleUrl>
+      <Point><coordinates>-159.4740,22.2185,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+
+</Document>
+</kml>
