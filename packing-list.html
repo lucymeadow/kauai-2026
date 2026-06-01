@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kauai Packing List — June 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Georgia, serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a2a3a 0%, #0d3d52 40%, #1a5c6b 100%);
+      color: #f0ede6;
+    }
+    header {
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 32px 20px;
+    }
+    .header-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .header-sub {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: #7ecdc4;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    h1 { font-size: 28px; font-weight: 400; letter-spacing: -0.01em; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .item-count { font-size: 13px; color: #7ecdc4; }
+    .btn-export {
+      background: #7ecdc4;
+      color: #0a2a3a;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 12px;
+      font-family: inherit;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .btn-export:hover { background: #5bb8ae; }
+    .layout {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      gap: 24px;
+    }
+    .sidebar { width: 200px; flex-shrink: 0; }
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 9px 12px;
+      margin-bottom: 4px;
+      cursor: pointer;
+      color: #a0bfc4;
+      font-family: inherit;
+      font-size: 13px;
+      text-align: left;
+      transition: all 0.15s;
+    }
+    .cat-btn:hover { color: #7ecdc4; background: rgba(126,205,196,0.08); }
+    .cat-btn.active {
+      background: rgba(126,205,196,0.15);
+      border-color: rgba(126,205,196,0.3);
+      color: #7ecdc4;
+    }
+    .cat-badge {
+      background: rgba(126,205,196,0.25);
+      color: #7ecdc4;
+      border-radius: 10px;
+      padding: 1px 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .cat-btn.active .cat-badge {
+      background: #7ecdc4;
+      color: #0a2a3a;
+    }
+    .panel {
+      flex: 1;
+      min-width: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+    .panel-header .icon { font-size: 20px; }
+    .items-list { padding: 8px 0; }
+    .item-row {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 12px;
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-text { flex: 1; }
+    .item-name { font-size: 14px; color: #f0ede6; }
+    .item-note { font-size: 12px; color: #7ecdc4; margin-top: 2px; opacity: 0.8; }
+    .btn-remove {
+      background: none;
+      border: none;
+      color: rgba(160,191,196,0.35);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 0 4px;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+    .btn-remove:hover { color: #e07070; }
+    .empty-msg {
+      padding: 24px 20px;
+      color: rgba(160,191,196,0.5);
+      font-size: 13px;
+      font-style: italic;
+    }
+    .add-row {
+      padding: 14px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.1);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .add-row input {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #f0ede6;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+    .add-row input::placeholder { color: rgba(240,237,230,0.35); }
+    .add-row input:focus { border-color: rgba(126,205,196,0.4); }
+    .input-item { flex: 1 1 140px; }
+    .input-note { flex: 2 1 180px; }
+    .btn-add {
+      background: #7ecdc4;
+      color: #0a2a3a;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .btn-add:hover { background: #5bb8ae; }
+    @media (max-width: 600px) {
+      .layout { flex-direction: column; padding: 16px; }
+      .sidebar { width: 100%; display: flex; flex-wrap: wrap; gap: 4px; }
+      .cat-btn { width: auto; flex: 1 1 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-sub">June 13 – 20, 2026 · Princeville, North Shore</div>
+    <div class="header-row">
+      <h1>Kauai Packing List</h1>
+      <div class="header-right">
+        <span class="item-count" id="item-count">0 items</span>
+        <button class="btn-export" onclick="exportList()">Export List</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="panel">
+    <div class="panel-header">
+      <span class="icon" id="panel-icon"></span>
+      <span id="panel-title"></span>
+    </div>
+    <div class="items-list" id="items-list"></div>
+    <div class="add-row">
+      <input class="input-item" id="new-item" placeholder="Item name" onkeydown="if(event.key==='Enter')addItem()" />
+      <input class="input-note" id="new-note" placeholder="Note (optional)" onkeydown="if(event.key==='Enter')addItem()" />
+      <button class="btn-add" onclick="addItem()">Add</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CATEGORIES = [
+  "Shoes","Swimwear & Beach","Clothing & Outfits","Workout",
+  "Sun & Skin Protection","Kids","Toiletries & Health",
+  "Travel & Misc","Need to Buy","Buy in Kauai","Kauai Grocery List","LA"];
+
+const ICONS = {
+  "Shoes":"👡","Swimwear & Beach":"🏖️","Clothing & Outfits":"👗",
+  "Workout":"🏃","Sun & Skin Protection":"☀️","Kids":"🧒",
+  "Toiletries & Health":"🧴","Travel & Misc":"🎒",
+  "Need to Buy":"🛍️","Buy in Kauai":"🛒","Kauai Grocery List":"🥬","LA":"🌴"
+};
+
+let activeCategory = "Shoes";
+let nextId = 1000;
+
+let items = {
+  "Shoes": [
+    { id:1, item:"Birkenstocks", note:"Daily, beach-to-lunch, Night Market" },
+    { id:2, item:"Keen water shoes", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
+    { id:3, item:"Running shoes", note:"Waimea Canyon, Kilauea Lighthouse" },
+    { id:4, item:"Strappy sandals", note:"Ama, The Bistro, Luau, cruise boarding" },
+    { id:5, item:"Adidas shoes", note:"LA days, casual" },
+  ],
+  "Swimwear & Beach": [
+    { id:10, item:"Black Londre one piece", note:"" },
+    { id:11, item:"Summersalt one piece", note:"" },
+    { id:12, item:"Kiava two piece", note:"" },
+    { id:13, item:"Long cover up", note:"Beach to lunch transition" },
+  ],
+  "Clothing & Outfits": [
+    { id:20, item:"White jean shorts", note:"Daytime beach & casual" },
+    { id:21, item:"Blue jean shorts", note:"Daytime beach & casual" },
+    { id:22, item:"Black jean shorts", note:"Night Market, casual dinners" },
+    { id:23, item:"Green Tamari dress", note:"Ama or The Bistro dinner" },
+    { id:24, item:"Blue & white stripe Quince dress", note:"Luau, Night Market, casual lunch" },
+    { id:25, item:"Red flower dress", note:"Kilauea, Hanalei town, or dinner swap" },
+    { id:26, item:"Vuori joggers/sweatpants", note:"Na Pali cruise, lanai evenings" },
+    { id:27, item:"Girlfriend Collective joggers/sweatpants", note:"Na Pali cruise, lanai evenings" },
+    { id:28, item:"Tanks (x5)", note:"Beach mornings, casual days, cruise layer" },
+    { id:29, item:"Figma sweatshirt", note:"Evenings, lanai" },
+    { id:30, item:"Grey hoodie", note:"Na Pali cruise, chilly evenings" },
+    { id:31, item:"Vuori shorts (x2)", note:"Lounging, relaxing" },
+    { id:32, item:"PJ tops (x2)", note:"Sleep, downtime" },
+    { id:33, item:"Underwear (x6)", note:"" },
+    { id:34, item:"Regular bras (x2)", note:"" },
+    { id:35, item:"Casual socks (x2)", note:"Waimea Canyon, Kilauea" },
+    { id:36, item:"Mustard shawl", note:"Evenings, Night Market" },
+    { id:37, item:"Jean jacket", note:"Cool evenings, casual layer" },
+    { id:38, item:"Black workout dress", note:"" },
+  ],
+  "Workout": [
+    { id:40, item:"Athletic socks (4 pairs)", note:"" },
+    { id:41, item:"Girlfriend Collective sports bras (x2)", note:"" },
+    { id:42, item:"Regular sports bras (x2)", note:"" },
+    { id:43, item:"Athletic shorts (x4)", note:"" },
+    { id:44, item:"Black tube resistance band", note:"Strength sessions" },
+    { id:45, item:"Blue rubber resistance band", note:"Strength sessions" },
+  ],
+  "Sun & Skin Protection": [
+    { id:50, item:"Face sunscreen", note:"Part of skincare routine" },
+    { id:51, item:"Glacier National Park baseball hat", note:"Runs, Waimea Canyon, casual" },
+    { id:52, item:"Wide brim wicker hat", note:"Beach, long sun exposure" },
+    { id:53, item:"Running sunglasses", note:"" },
+    { id:54, item:"Casual sunglasses", note:"" },
+    { id:55, item:"Round sunglasses", note:"" },
+  ],
+  "Kids": [
+    { id:110, item:"iPads (x2)", note:"Flights & downtime" },
+    { id:111, item:"Snacks", note:"Flights & car rides" },
+    { id:112, item:"Owen's Montessori toy", note:"Flights" },
+    { id:113, item:"Books", note:"Flights & downtime" },
+    { id:114, item:"Stuffy — Will", note:"" },
+    { id:115, item:"Stuffy — Owen", note:"" },
+    { id:116, item:"Owen stroller", note:"Airports, Kilauea, Luau" },
+    { id:117, item:"Will's suitcase", note:"Carry-on" },
+    { id:118, item:"Bathing suits — Will (x2)", note:"" },
+    { id:119, item:"Bathing suits — Owen (x2)", note:"" },
+    { id:120, item:"Swim diapers — Owen (x3)", note:"" },
+    { id:121, item:"Floaties — Will", note:"From LA" },
+    { id:122, item:"Rash guard — Will", note:"" },
+    { id:123, item:"Rash guard — Owen", note:"" },
+    { id:124, item:"Hat — Will", note:"" },
+    { id:125, item:"Hat — Owen", note:"" },
+    { id:126, item:"Kids face sunscreen", note:"" },
+    { id:127, item:"Keen water shoes — Will", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
+    { id:128, item:"Keen water shoes — Owen", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
+    { id:129, item:"Tennis shoes — Will", note:"" },
+    { id:130, item:"Tennis shoes — Owen", note:"" },
+    { id:131, item:"PJs — Will (x3)", note:"" },
+    { id:132, item:"PJs — Owen (x3)", note:"" },
+    { id:133, item:"Sound machine", note:"Naps & bedtime" },
+    { id:134, item:"Slumber Pod", note:"Owen's sleep setup" },
+    { id:135, item:"Shorts — Will (x5)", note:"" },
+    { id:136, item:"Shorts — Owen (x5)", note:"" },
+    { id:137, item:"T-shirts — Will (x5)", note:"" },
+    { id:138, item:"T-shirts — Owen (x5)", note:"" },
+    { id:139, item:"Pants — Will (x2)", note:"" },
+    { id:140, item:"Pants — Owen (x2)", note:"" },
+    { id:141, item:"Underwear — Will (x5)", note:"" },
+    { id:142, item:"Socks — Will (x5)", note:"" },
+    { id:143, item:"Socks — Owen (x5)", note:"" },
+    { id:144, item:"Overnight diapers — Owen (x14)", note:"12 nights + 2 extra" },
+    { id:145, item:"Button down shirts — Will (x2)", note:"Dinners out" },
+    { id:146, item:"Button down shirts — Owen (x2)", note:"Dinners out" },
+    { id:147, item:"Toothbrush — Will", note:"" },
+    { id:148, item:"Toothbrush — Owen", note:"" },
+    { id:149, item:"Toothpaste — kids", note:"" },
+    { id:150, item:"Car seat — Owen", note:"One per rental car" },
+    { id:151, item:"Car seat harness — Will", note:"" },
+    { id:152, item:"Goggles — Will", note:"Pool & snorkeling" },
+    { id:153, item:"Bib — Owen", note:"Restaurants, luau, cruise" },
+    { id:154, item:"Utensils — Owen", note:"" },
+    { id:155, item:"Water bottles — kids", note:"" },
+    { id:156, item:"Sippy cups — Owen", note:"" },
+    { id:157, item:"Wet/dry bag — Will", note:"Beach to restaurant transitions" },
+    { id:158, item:"Wet/dry bag — Owen", note:"Beach to restaurant transitions" },
+    { id:159, item:"Sweatshirt — Will", note:"Cool evenings, outdoor dinners" },
+    { id:160, item:"Sweatshirt — Owen", note:"Cool evenings, outdoor dinners" },
+  ],
+  "Toiletries & Health": [
+    { id:60, item:"Differin", note:"Retinoid — night rotation" },
+    { id:61, item:"AlphaRet", note:"Exfoliant — night rotation" },
+    { id:62, item:"Azelaic acid", note:"" },
+    { id:63, item:"Cocokind Vitamin C", note:"" },
+    { id:64, item:"Hyaluronic acid", note:"" },
+    { id:65, item:"Hypochlorous acid", note:"" },
+    { id:66, item:"Good Molecules moisturizer", note:"" },
+    { id:67, item:"Torriden toner", note:"Korean skincare" },
+    { id:68, item:"Dalba spray", note:"Korean skincare" },
+    { id:69, item:"Barrier moisturizer", note:"Korean skincare" },
+    { id:70, item:"Gold Bond", note:"" },
+    { id:71, item:"Naturium back care products", note:"Back routine" },
+    { id:72, item:"Toothbrush", note:"" },
+    { id:73, item:"Toothpaste", note:"" },
+    { id:74, item:"Night guard", note:"" },
+    { id:75, item:"Night guard toothbrush", note:"" },
+    { id:76, item:"Roz spray", note:"Haircare" },
+    { id:77, item:"Roz cream", note:"Haircare" },
+    { id:78, item:"R&Co dry shampoo paste", note:"Haircare" },
+    { id:79, item:"Hair brush", note:"" },
+    { id:80, item:"Round brush", note:"" },
+    { id:81, item:"Comb", note:"" },
+    { id:82, item:"Hair ties", note:"" },
+    { id:83, item:"Bobby pins", note:"" },
+    { id:84, item:"Headband", note:"" },
+    { id:85, item:"Deodorant", note:"" },
+    { id:86, item:"Vitamins", note:"Ritual multivitamin, Hum B12, D3, omega-3" },
+    { id:87, item:"Razors", note:"" },
+    { id:88, item:"Creatine", note:"Nutricost" },
+    { id:89, item:"Protein powder", note:"" },
+    { id:92, item:"No Cow bars", note:"Snacks & post-workout" },
+    { id:93, item:"Shampoo", note:"" },
+    { id:94, item:"Conditioner", note:"" },
+    { id:99, item:"Body wash", note:"" },
+  ],
+  "Travel & Misc": [
+    { id:100, item:"Advil PM", note:"" },
+    { id:101, item:"Offfields gummies", note:"" },
+    { id:102, item:"Phone / watch / AirPod charger", note:"" },
+    { id:103, item:"iPads (x2)", note:"" },
+    { id:104, item:"iPad chargers", note:"" },
+    { id:105, item:"Water bottles", note:"80oz/day target — Hawaii humidity" },
+    { id:106, item:"Green beach bag", note:"Beach days" },
+    { id:107, item:"Motherboy tote", note:"" },
+    { id:108, item:"Olive and Young bag", note:"" },
+  ],
+  "Need to Buy": [
+    { id:95, item:"SPF lip balm", note:"Pick up before leaving Chicago" },
+    { id:96, item:"⚠️ Check VRBO for pack and play", note:"VRBO #4435088 — confirm before packing" },
+    { id:200, item:"Portable battery pack", note:"Pick up before leaving Chicago" },
+  ],
+  "Buy in Kauai": [
+    { id:90, item:"Reef-safe spray body sunscreen", note:"Costco — required by Hawaii law" },
+    { id:91, item:"Aloe vera gel", note:"Costco" },
+    { id:93, item:"Insect repellent", note:"Costco — mosquitoes near rivers at dusk" },
+    { id:94, item:"Floaties — Owen", note:"Costco" },
+    { id:97, item:"Pool toys", note:"Costco — dive sticks, noodles" },
+    { id:98, item:"Kids Tylenol / Advil", note:"Costco" },
+    { id:201, item:"Kids body sunscreen", note:"Costco — reef-safe" },
+    { id:202, item:"Diapers — Owen (daytime)", note:"Costco" },
+    { id:203, item:"Sand toys", note:"Costco" },
+    { id:204, item:"Pirate's Booty", note:"Costco" },
+    { id:205, item:"Bananas", note:"Costco" },
+    { id:206, item:"Body lotion", note:"Costco" },
+    { id:207, item:"Seaweed snacks", note:"Costco" },
+    { id:208, item:"Celsius", note:"Costco" },
+    { id:209, item:"Milk", note:"Costco" },
+    { id:210, item:"Bread", note:"Costco" },
+  ],
+  "Kauai Grocery List": [
+    { id:202, item:"Ground coffee", note:"" },
+    { id:203, item:"Splenda", note:"" },
+    { id:204, item:"Soy milk", note:"" },
+    { id:205, item:"Tofu", note:"" },
+  ],
+  "LA": [
+    { id:210, item:"Jeans", note:"Friends dinner June 11, casual June 21" },
+    { id:211, item:"White linen shirt", note:"Family or friends dinner" },
+    { id:212, item:"Chambray shirt", note:"Park days, casual hang" },
+    { id:213, item:"Blue cover up", note:"Casual around town" },
+    { id:214, item:"Red shirt from Hannah", note:"Friends or family dinner" },
+    { id:215, item:"Black longline sports bra", note:"Workouts, undertop with jeans" },
+    { id:216, item:"White longline sports bra", note:"Workouts, undertop with jeans" },
+  ],
+};
+
+function totalItems() {
+  return Object.values(items).reduce((s, arr) => s + arr.length, 0);
+}
+
+function render() {
+  // Sidebar
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = CATEGORIES.map(cat => {
+    const count = items[cat].length;
+    const active = cat === activeCategory ? 'active' : '';
+    const badge = count > 0 ? `<span class="cat-badge">${count}</span>` : '';
+    return `<button class="cat-btn ${active}" onclick="setCategory('${cat.replace(/'/g,"\\'")}')">
+      <span>${ICONS[cat]} ${cat}</span>${badge}
+    </button>`;
+  }).join('');
+
+  // Panel header
+  document.getElementById('panel-icon').textContent = ICONS[activeCategory];
+  document.getElementById('panel-title').textContent = activeCategory;
+
+  // Items
+  const list = document.getElementById('items-list');
+  const catItems = items[activeCategory];
+  if (catItems.length === 0) {
+    list.innerHTML = '<div class="empty-msg">No items yet — add one below.</div>';
+  } else {
+    list.innerHTML = catItems.map(i => `
+      <div class="item-row">
+        <div class="item-text">
+          <div class="item-name">${escHtml(i.item)}</div>
+          ${i.note ? `<div class="item-note">${escHtml(i.note)}</div>` : ''}
+        </div>
+        <button class="btn-remove" onclick="removeItem(${i.id})" title="Remove">×</button>
+      </div>
+    `).join('');
+  }
+
+  // Count
+  document.getElementById('item-count').textContent = totalItems() + ' items';
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  render();
+}
+
+function addItem() {
+  const itemEl = document.getElementById('new-item');
+  const noteEl = document.getElementById('new-note');
+  const val = itemEl.value.trim();
+  if (!val) return;
+  items[activeCategory].push({ id: nextId++, item: val, note: noteEl.value.trim() });
+  itemEl.value = '';
+  noteEl.value = '';
+  render();
+}
+
+function removeItem(id) {
+  items[activeCategory] = items[activeCategory].filter(i => i.id !== id);
+  render();
+}
+
+function exportList() {
+  let text = 'KAUAI PACKING LIST — June 13–20, 2026\n';
+  text += 'Princeville, North Shore\n';
+  text += '─'.repeat(40) + '\n\n';
+  CATEGORIES.forEach(cat => {
+    const catItems = items[cat];
+    if (catItems.length === 0) return;
+    text += `${ICONS[cat]} ${cat.toUpperCase()}\n`;
+    catItems.forEach(i => {
+      text += `  • ${i.item}`;
+      if (i.note) text += ` — ${i.note}`;
+      text += '\n';
+    });
+    text += '\n';
+  });
+  text += '─'.repeat(40) + '\n';
+  text += `Total items: ${totalItems()}\n`;
+
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kauai-packing-list.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+render();
+</script>
+</body>
+</html>
