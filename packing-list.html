@@ -219,13 +219,13 @@
 const CATEGORIES = [
   "Shoes","Swimwear & Beach","Clothing & Outfits","Workout",
   "Sun & Skin Protection","Kids","Toiletries & Health",
-  "Travel & Misc","Need to Buy","Buy in Kauai","Kauai Grocery List","LA"];
+  "Travel & Misc","Need to Buy","Check with VRBO","Buy in Kauai","Kauai Grocery List","LA"];
 
 const ICONS = {
   "Shoes":"👡","Swimwear & Beach":"🏖️","Clothing & Outfits":"👗",
   "Workout":"🏃","Sun & Skin Protection":"☀️","Kids":"🧒",
   "Toiletries & Health":"🧴","Travel & Misc":"🎒",
-  "Need to Buy":"🛍️","Buy in Kauai":"🛒","Kauai Grocery List":"🥬","LA":"🌴"
+  "Need to Buy":"🛍️","Check with VRBO":"🏠","Buy in Kauai":"🛒","Kauai Grocery List":"🥬","LA":"🌴"
 };
 
 let activeCategory = "Shoes";
@@ -384,8 +384,17 @@ let items = {
   ],
   "Need to Buy": [
     { id:95, item:"SPF lip balm", note:"Pick up before leaving Chicago" },
-    { id:96, item:"⚠️ Check VRBO for pack and play", note:"VRBO #4435088 — confirm before packing" },
     { id:200, item:"Portable battery pack", note:"Pick up before leaving Chicago" },
+    { id:300, item:"Sea-Bands", note:"Motion sickness — Na Pali cruise (Will & adults)" },
+    { id:301, item:"Rash guards", note:"2 each for Will & Owen — one's always drying" },
+  ],
+  "Check with VRBO": [
+    { id:310, item:"Snorkel masks", note:"Ke'e & Anini snorkeling" },
+    { id:311, item:"Beach towels", note:"6 beach days — confirm provided" },
+    { id:312, item:"First-aid basics", note:"Band-aids, Benadryl, thermometer" },
+    { id:313, item:"High chair / booster for Owen", note:"For meals at the house" },
+    { id:314, item:"Laundry detergent", note:"Confirm washer/dryer + detergent" },
+    { id:96, item:"Pack and play", note:"VRBO #4435088 — confirm before packing" },
   ],
   "Buy in Kauai": [
     { id:90, item:"Reef-safe spray body sunscreen", note:"Costco — required by Hawaii law" },
