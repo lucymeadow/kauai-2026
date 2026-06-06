@@ -17,10 +17,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 28px 32px 20px;
     }
-    .header-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
+    .header-inner { max-width: 820px; margin: 0 auto; }
     .header-sub {
       font-size: 11px;
       letter-spacing: 0.2em;
@@ -83,6 +80,19 @@
       border-color: rgba(126,205,196,0.3);
       color: #7ecdc4;
     }
+    .cat-btn.view-all-btn {
+      color: #f0ede6;
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .cat-btn.view-all-btn:hover { background: rgba(255,255,255,0.1); }
+    .cat-btn.view-all-btn.active {
+      background: rgba(126,205,196,0.2);
+      border-color: rgba(126,205,196,0.4);
+      color: #7ecdc4;
+    }
     .cat-badge {
       background: rgba(126,205,196,0.25);
       color: #7ecdc4;
@@ -113,21 +123,74 @@
     }
     .panel-header .icon { font-size: 20px; }
     .items-list { padding: 8px 0; }
+
+    /* category section headers in View All mode */
+    .section-heading {
+      padding: 10px 20px 6px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7ecdc4;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 4px;
+    }
+    .section-heading:first-child { border-top: none; margin-top: 0; }
+
+    /* item rows */
     .item-row {
       display: flex;
-      align-items: flex-start;
-      padding: 10px 20px;
+      align-items: center;
+      padding: 9px 20px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
       gap: 12px;
+      cursor: pointer;
+      transition: background 0.12s;
     }
+    .item-row:hover { background: rgba(255,255,255,0.03); }
     .item-row:last-child { border-bottom: none; }
+
+    /* custom checkbox */
+    .item-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(126,205,196,0.4);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      background: transparent;
+    }
+    .item-row.checked .item-check {
+      background: #7ecdc4;
+      border-color: #7ecdc4;
+    }
+    .item-check::after {
+      content: '';
+      display: none;
+      width: 5px;
+      height: 9px;
+      border: 2px solid #0a2a3a;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+    .item-row.checked .item-check::after { display: block; }
+
     .item-text { flex: 1; }
-    .item-name { font-size: 14px; color: #f0ede6; }
+    .item-name { font-size: 14px; color: #f0ede6; transition: all 0.15s; }
     .item-note { font-size: 12px; color: #7ecdc4; margin-top: 2px; opacity: 0.8; }
+    .item-row.checked .item-name {
+      text-decoration: line-through;
+      color: rgba(240,237,230,0.35);
+    }
+    .item-row.checked .item-note { opacity: 0.35; }
+
     .btn-remove {
       background: none;
       border: none;
-      color: rgba(160,191,196,0.35);
+      color: rgba(160,191,196,0.25);
       cursor: pointer;
       font-size: 18px;
       padding: 0 4px;
@@ -136,6 +199,7 @@
       transition: color 0.15s;
     }
     .btn-remove:hover { color: #e07070; }
+
     .empty-msg {
       padding: 24px 20px;
       color: rgba(160,191,196,0.5);
@@ -181,6 +245,7 @@
       .layout { flex-direction: column; padding: 16px; }
       .sidebar { width: 100%; display: flex; flex-wrap: wrap; gap: 4px; }
       .cat-btn { width: auto; flex: 1 1 auto; }
+      .cat-btn.view-all-btn { width: 100%; flex: 1 1 100%; }
     }
   </style>
 </head>
@@ -192,7 +257,7 @@
     <div class="header-row">
       <h1>Kauai Packing List</h1>
       <div class="header-right">
-        <span class="item-count" id="item-count">0 items</span>
+        <span class="item-count" id="item-count">0 packed</span>
         <button class="btn-export" onclick="exportList()">Export List</button>
       </div>
     </div>
@@ -228,8 +293,10 @@ const ICONS = {
   "Need to Buy":"🛍️","Check with VRBO":"🏠","Buy in Kauai":"🛒","Kauai Grocery List":"🥬","LA":"🌴"
 };
 
+const VIEW_ALL = '__all__';
 let activeCategory = "Shoes";
 let nextId = 1000;
+const checkedIds = new Set();
 
 let items = {
   "Shoes": [
@@ -438,41 +505,75 @@ function totalItems() {
   return Object.values(items).reduce((s, arr) => s + arr.length, 0);
 }
 
+function itemRow(i, removeCat) {
+  const checked = checkedIds.has(i.id) ? 'checked' : '';
+  const cat = removeCat || activeCategory;
+  return `
+    <div class="item-row ${checked}" onclick="toggleCheck(${i.id})">
+      <div class="item-check"></div>
+      <div class="item-text">
+        <div class="item-name">${escHtml(i.item)}</div>
+        ${i.note ? `<div class="item-note">${escHtml(i.note)}</div>` : ''}
+      </div>
+      <button class="btn-remove" onclick="event.stopPropagation();removeItem(${i.id},'${cat.replace(/'/g,"\\'")}')" title="Remove">×</button>
+    </div>`;
+}
+
 function render() {
+  const isAll = activeCategory === VIEW_ALL;
+
   // Sidebar
   const sidebar = document.getElementById('sidebar');
-  sidebar.innerHTML = CATEGORIES.map(cat => {
-    const count = items[cat].length;
-    const active = cat === activeCategory ? 'active' : '';
-    const badge = count > 0 ? `<span class="cat-badge">${count}</span>` : '';
-    return `<button class="cat-btn ${active}" onclick="setCategory('${cat.replace(/'/g,"\\'")}')">
-      <span>${ICONS[cat]} ${cat}</span>${badge}
-    </button>`;
-  }).join('');
+  const total = totalItems();
+  const packed = checkedIds.size;
+  sidebar.innerHTML =
+    `<button class="cat-btn view-all-btn ${isAll ? 'active' : ''}" onclick="setCategory('${VIEW_ALL}')">
+      <span>📋 View All</span><span class="cat-badge">${total}</span>
+    </button>` +
+    CATEGORIES.map(cat => {
+      const count = items[cat].length;
+      const active = cat === activeCategory ? 'active' : '';
+      const badge = count > 0 ? `<span class="cat-badge">${count}</span>` : '';
+      return `<button class="cat-btn ${active}" onclick="setCategory('${cat.replace(/'/g,"\\'")}')">
+        <span>${ICONS[cat]} ${cat}</span>${badge}
+      </button>`;
+    }).join('');
 
   // Panel header
-  document.getElementById('panel-icon').textContent = ICONS[activeCategory];
-  document.getElementById('panel-title').textContent = activeCategory;
+  if (isAll) {
+    document.getElementById('panel-icon').textContent = '📋';
+    document.getElementById('panel-title').textContent = 'All Items';
+  } else {
+    document.getElementById('panel-icon').textContent = ICONS[activeCategory];
+    document.getElementById('panel-title').textContent = activeCategory;
+  }
 
   // Items
   const list = document.getElementById('items-list');
-  const catItems = items[activeCategory];
-  if (catItems.length === 0) {
-    list.innerHTML = '<div class="empty-msg">No items yet — add one below.</div>';
+  if (isAll) {
+    let html = '';
+    CATEGORIES.forEach(cat => {
+      const catItems = items[cat];
+      if (catItems.length === 0) return;
+      html += `<div class="section-heading">${ICONS[cat]} ${escHtml(cat)}</div>`;
+      html += catItems.map(i => itemRow(i, cat)).join('');
+    });
+    list.innerHTML = html || '<div class="empty-msg">Nothing here yet.</div>';
   } else {
-    list.innerHTML = catItems.map(i => `
-      <div class="item-row">
-        <div class="item-text">
-          <div class="item-name">${escHtml(i.item)}</div>
-          ${i.note ? `<div class="item-note">${escHtml(i.note)}</div>` : ''}
-        </div>
-        <button class="btn-remove" onclick="removeItem(${i.id})" title="Remove">×</button>
-      </div>
-    `).join('');
+    const catItems = items[activeCategory];
+    if (catItems.length === 0) {
+      list.innerHTML = '<div class="empty-msg">No items yet — add one below.</div>';
+    } else {
+      list.innerHTML = catItems.map(i => itemRow(i)).join('');
+    }
   }
 
+  // Add row visibility
+  document.querySelector('.add-row').style.display = isAll ? 'none' : 'flex';
+
   // Count
-  document.getElementById('item-count').textContent = totalItems() + ' items';
+  document.getElementById('item-count').textContent =
+    packed > 0 ? `${packed} / ${total} packed` : `${total} items`;
 }
 
 function escHtml(s) {
@@ -481,6 +582,15 @@ function escHtml(s) {
 
 function setCategory(cat) {
   activeCategory = cat;
+  render();
+}
+
+function toggleCheck(id) {
+  if (checkedIds.has(id)) {
+    checkedIds.delete(id);
+  } else {
+    checkedIds.add(id);
+  }
   render();
 }
 
@@ -495,8 +605,10 @@ function addItem() {
   render();
 }
 
-function removeItem(id) {
-  items[activeCategory] = items[activeCategory].filter(i => i.id !== id);
+function removeItem(id, cat) {
+  const target = cat || activeCategory;
+  items[target] = items[target].filter(i => i.id !== id);
+  checkedIds.delete(id);
   render();
 }
 
@@ -509,14 +621,17 @@ function exportList() {
     if (catItems.length === 0) return;
     text += `${ICONS[cat]} ${cat.toUpperCase()}\n`;
     catItems.forEach(i => {
-      text += `  • ${i.item}`;
+      const done = checkedIds.has(i.id) ? '✓' : '○';
+      text += `  ${done} ${i.item}`;
       if (i.note) text += ` — ${i.note}`;
       text += '\n';
     });
     text += '\n';
   });
   text += '─'.repeat(40) + '\n';
-  text += `Total items: ${totalItems()}\n`;
+  const packed = checkedIds.size;
+  const total = totalItems();
+  text += `Packed: ${packed} / ${total} items\n`;
 
   const blob = new Blob([text], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
