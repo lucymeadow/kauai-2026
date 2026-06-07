@@ -282,11 +282,13 @@
 
 <script>
 const CATEGORIES = [
+  "On the plane",
   "Shoes","Swimwear & Beach","Clothing & Outfits","Workout",
   "Sun & Skin Protection","Kids","Toiletries & Health",
   "Travel & Misc","Need to Buy","Check with VRBO","Buy in Kauai","Kauai Grocery List","LA"];
 
 const ICONS = {
+  "On the plane":"✈️",
   "Shoes":"👡","Swimwear & Beach":"🏖️","Clothing & Outfits":"👗",
   "Workout":"🏃","Sun & Skin Protection":"☀️","Kids":"🧒",
   "Toiletries & Health":"🧴","Travel & Misc":"🎒",
@@ -294,16 +296,40 @@ const ICONS = {
 };
 
 const VIEW_ALL = '__all__';
-let activeCategory = "Shoes";
+let activeCategory = "On the plane";
 let nextId = 1000;
 const checkedIds = new Set(JSON.parse(localStorage.getItem('kauai-checked') || '[]'));
 function saveChecked() { localStorage.setItem('kauai-checked', JSON.stringify([...checkedIds])); }
 
 let items = {
+  "On the plane": [
+    { id:400, item:"Water bottles", note:"80oz/day target" },
+    { id:401, item:"Water bottles — kids", note:"" },
+    { id:402, item:"Motherboy tote", note:"Carry-on personal item" },
+    { id:403, item:"Snacks", note:"Flights & car rides" },
+    { id:404, item:"Stuffy — Will", note:"" },
+    { id:405, item:"Stuffy — Owen", note:"" },
+    { id:406, item:"iPads (x2)", note:"Flights & downtime" },
+    { id:407, item:"Owen's Montessori toy", note:"" },
+    { id:408, item:"Books", note:"Flights & downtime" },
+    { id:409, item:"Owen stroller", note:"Gate-check at airport" },
+    { id:410, item:"Running shoes", note:"Wear on plane — Waimea Canyon, Kilauea" },
+    { id:411, item:"Casual sunglasses", note:"" },
+    { id:412, item:"Figma sweatshirt", note:"Plane + evenings" },
+    { id:413, item:"Eat Plants & Lift Heavy tshirt", note:"" },
+    { id:414, item:"Girlfriend Collective sweatpants", note:"Plane + Na Pali cruise, lanai" },
+    { id:415, item:"Athletic socks", note:"Wear on plane" },
+    { id:416, item:"Underwear", note:"Wear on plane" },
+    { id:417, item:"Tennis shoes — Will", note:"Wear on plane" },
+    { id:418, item:"Tennis shoes — Owen", note:"Wear on plane" },
+    { id:419, item:"Socks — Will", note:"Wear on plane" },
+    { id:420, item:"Socks — Owen", note:"Wear on plane" },
+    { id:421, item:"Sweatshirt — Will", note:"Plane + cool evenings" },
+    { id:422, item:"Sweatshirt — Owen", note:"Plane + cool evenings" },
+  ],
   "Shoes": [
     { id:1, item:"Birkenstocks", note:"Daily, beach-to-lunch, Night Market" },
     { id:2, item:"Keen water shoes", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
-    { id:3, item:"Running shoes", note:"Waimea Canyon, Kilauea Lighthouse" },
     { id:4, item:"Strappy sandals", note:"Ama, The Bistro, Luau, cruise boarding" },
     { id:5, item:"Adidas shoes", note:"LA days, casual" },
   ],
@@ -321,13 +347,10 @@ let items = {
     { id:24, item:"Blue & white stripe Quince dress", note:"Luau, Night Market, casual lunch" },
     { id:25, item:"Red flower dress", note:"Kilauea, Hanalei town, or dinner swap" },
     { id:26, item:"Vuori joggers/sweatpants", note:"Na Pali cruise, lanai evenings" },
-    { id:27, item:"Girlfriend Collective joggers/sweatpants", note:"Na Pali cruise, lanai evenings" },
     { id:28, item:"Tanks (x5)", note:"Beach mornings, casual days, cruise layer" },
-    { id:29, item:"Figma sweatshirt", note:"Evenings, lanai" },
     { id:30, item:"Grey hoodie", note:"Na Pali cruise, chilly evenings" },
     { id:31, item:"Vuori shorts (x2)", note:"Lounging, relaxing" },
     { id:32, item:"PJ tops (x2)", note:"Sleep, downtime" },
-    { id:33, item:"Underwear (x6)", note:"" },
     { id:34, item:"Regular bras (x2)", note:"" },
     { id:35, item:"Casual socks (x2)", note:"Waimea Canyon, Kilauea" },
     { id:36, item:"Mustard shawl", note:"Evenings, Night Market" },
@@ -336,7 +359,6 @@ let items = {
     { id:39, item:"Black tank top dress", note:"" },
   ],
   "Workout": [
-    { id:40, item:"Athletic socks (4 pairs)", note:"" },
     { id:41, item:"Girlfriend Collective sports bras (x2)", note:"" },
     { id:42, item:"Regular sports bras (x2)", note:"" },
     { id:43, item:"Athletic shorts (x4)", note:"" },
@@ -350,17 +372,9 @@ let items = {
     { id:51, item:"Glacier National Park baseball hat", note:"Runs, Waimea Canyon, casual" },
     { id:52, item:"Wide brim wicker hat", note:"Beach, long sun exposure" },
     { id:53, item:"Running sunglasses", note:"" },
-    { id:54, item:"Casual sunglasses", note:"" },
     { id:55, item:"Round sunglasses", note:"" },
   ],
   "Kids": [
-    { id:110, item:"iPads (x2)", note:"Flights & downtime" },
-    { id:111, item:"Snacks", note:"Flights & car rides" },
-    { id:112, item:"Owen's Montessori toy", note:"Flights" },
-    { id:113, item:"Books", note:"Flights & downtime" },
-    { id:114, item:"Stuffy — Will", note:"" },
-    { id:115, item:"Stuffy — Owen", note:"" },
-    { id:116, item:"Owen stroller", note:"Airports, Kilauea, Luau" },
     { id:117, item:"Will's suitcase", note:"Carry-on" },
     { id:118, item:"Bathing suits — Will (x2)", note:"" },
     { id:119, item:"Bathing suits — Owen (x2)", note:"" },
@@ -373,8 +387,6 @@ let items = {
     { id:126, item:"Kids face sunscreen", note:"" },
     { id:127, item:"Keen water shoes — Will", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
     { id:128, item:"Keen water shoes — Owen", note:"Ke'e Beach, Queen's Bath, Kalihiwai" },
-    { id:129, item:"Tennis shoes — Will", note:"" },
-    { id:130, item:"Tennis shoes — Owen", note:"" },
     { id:131, item:"PJs — Will (x3)", note:"" },
     { id:132, item:"PJs — Owen (x3)", note:"" },
     { id:133, item:"Sound machine", note:"Naps & bedtime" },
@@ -386,8 +398,6 @@ let items = {
     { id:139, item:"Pants — Will (x2)", note:"" },
     { id:140, item:"Pants — Owen (x2)", note:"" },
     { id:141, item:"Underwear — Will (x5)", note:"" },
-    { id:142, item:"Socks — Will (x5)", note:"" },
-    { id:143, item:"Socks — Owen (x5)", note:"" },
     { id:144, item:"Overnight diapers — Owen (x14)", note:"12 nights + 2 extra" },
     { id:145, item:"Button down shirts — Will (x2)", note:"Dinners out" },
     { id:146, item:"Button down shirts — Owen (x2)", note:"Dinners out" },
@@ -399,12 +409,9 @@ let items = {
     { id:152, item:"Goggles — Will", note:"Pool & snorkeling" },
     { id:153, item:"Bib — Owen", note:"Restaurants, luau, cruise" },
     { id:154, item:"Utensils — Owen", note:"" },
-    { id:155, item:"Water bottles — kids", note:"" },
     { id:156, item:"Sippy cups — Owen", note:"" },
     { id:157, item:"Wet/dry bag — Will", note:"Beach to restaurant transitions" },
     { id:158, item:"Wet/dry bag — Owen", note:"Beach to restaurant transitions" },
-    { id:159, item:"Sweatshirt — Will", note:"Cool evenings, outdoor dinners" },
-    { id:160, item:"Sweatshirt — Owen", note:"Cool evenings, outdoor dinners" },
   ],
   "Toiletries & Health": [
     { id:60, item:"Differin", note:"Retinoid — night rotation" },
@@ -446,11 +453,8 @@ let items = {
     { id:100, item:"Advil PM", note:"" },
     { id:101, item:"Offfields gummies", note:"" },
     { id:102, item:"Phone / watch / AirPod charger", note:"" },
-    { id:103, item:"iPads (x2)", note:"" },
     { id:104, item:"iPad chargers", note:"" },
-    { id:105, item:"Water bottles", note:"80oz/day target — Hawaii humidity" },
     { id:106, item:"Green beach bag", note:"Beach days" },
-    { id:107, item:"Motherboy tote", note:"" },
     { id:108, item:"Olive and Young bag", note:"" },
   ],
   "Need to Buy": [
