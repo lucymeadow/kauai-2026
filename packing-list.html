@@ -300,6 +300,7 @@ let activeCategory = "On the plane";
 let nextId = 1000;
 const checkedIds = new Set(JSON.parse(localStorage.getItem('kauai-checked') || '[]'));
 function saveChecked() { localStorage.setItem('kauai-checked', JSON.stringify([...checkedIds])); }
+function saveItems() { localStorage.setItem('kauai-items', JSON.stringify(items)); }
 
 let items = {
   "On the plane": [
@@ -506,6 +507,18 @@ let items = {
   ],
 };
 
+// Restore any user-added items saved from a previous session
+const savedItems = localStorage.getItem('kauai-items');
+if (savedItems) {
+  try {
+    const parsed = JSON.parse(savedItems);
+    // Merge: keep all hardcoded categories, but restore saved arrays
+    CATEGORIES.forEach(cat => {
+      if (parsed[cat]) items[cat] = parsed[cat];
+    });
+  } catch(e) {}
+}
+
 function totalItems() {
   return Object.values(items).reduce((s, arr) => s + arr.length, 0);
 }
@@ -608,6 +621,7 @@ function addItem() {
   items[activeCategory].push({ id: nextId++, item: val, note: noteEl.value.trim() });
   itemEl.value = '';
   noteEl.value = '';
+  saveItems();
   render();
 }
 
@@ -616,6 +630,7 @@ function removeItem(id, cat) {
   items[target] = items[target].filter(i => i.id !== id);
   checkedIds.delete(id);
   saveChecked();
+  saveItems();
   render();
 }
 
