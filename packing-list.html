@@ -296,7 +296,8 @@ const ICONS = {
 const VIEW_ALL = '__all__';
 let activeCategory = "Shoes";
 let nextId = 1000;
-const checkedIds = new Set();
+const checkedIds = new Set(JSON.parse(localStorage.getItem('kauai-checked') || '[]'));
+function saveChecked() { localStorage.setItem('kauai-checked', JSON.stringify([...checkedIds])); }
 
 let items = {
   "Shoes": [
@@ -591,6 +592,7 @@ function toggleCheck(id) {
   } else {
     checkedIds.add(id);
   }
+  saveChecked();
   render();
 }
 
@@ -609,6 +611,7 @@ function removeItem(id, cat) {
   const target = cat || activeCategory;
   items[target] = items[target].filter(i => i.id !== id);
   checkedIds.delete(id);
+  saveChecked();
   render();
 }
 
